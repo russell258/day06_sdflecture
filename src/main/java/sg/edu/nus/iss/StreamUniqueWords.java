@@ -33,7 +33,7 @@ public class StreamUniqueWords {
         BufferedReader br = new BufferedReader(r);
 
         Map<String, Integer> wordCount = new HashMap<>();
-
+    
         br.lines()
             .map(line -> line.trim().toLowerCase().replaceAll("\\p{Punct}",""))
             // String -> String[]
@@ -41,7 +41,7 @@ public class StreamUniqueWords {
             .map(line -> line.split("\\s+"))
             .flatMap(words -> Arrays.asList(words).stream())
             .filter(word -> (word.trim().length() > 0))
-            .filter(word -> STOPWORDS.contains(word))
+            .filter(word -> !Arrays.asList(STOPWORDS).contains(word))
             .forEach(word -> {
                 int c = wordCount.computeIfAbsent(word, w -> 0);
                 wordCount.put(word , c +1);
@@ -53,7 +53,7 @@ public class StreamUniqueWords {
             }
 
             long single = wordCount.keySet().stream()
-                .filter((Stringword) -> wordCount.get(word)==1)
+                .filter((String word) -> wordCount.get(word)==1)
                 .count();
 
             System.out.printf(">>> single words: %d\n", single);
