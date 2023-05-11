@@ -11,7 +11,7 @@ public class Main {
         Runnable a = g;
         Function<String, String> f = g;
         a.run();
-        // System.out.printf("f.apply %s\n", f.apply("hello, world"));
+        System.out.printf("f.apply %s\n", f.apply("hello, world"));
 
         // Lambda expression 
         Runnable r = () -> {
@@ -22,7 +22,7 @@ public class Main {
         };
 
         r.run();
-        // System.out.printf("****** apply %s\n", s.apply("hello, world"));
+        System.out.printf("****** apply %s\n", s.apply("hello, world"));
     }
 
 }
